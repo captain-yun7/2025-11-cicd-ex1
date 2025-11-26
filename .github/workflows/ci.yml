@@ -42,10 +42,10 @@ jobs:
     needs: build-and-push
     runs-on: self-hosted
     steps:
-      - name: Deploy new image
+      - uses: actions/checkout@v4
+      - name: Deploy to Kubernetes
         run: |
-          docker pull captainyun/hello-server-for-cicd-test-202511:latest
-          docker stop my-app || true
-          docker rm my-app || true
-          docker run -d --name my-app -p 3000:3000 captainyun/hello-server-for-cicd-test-202511:latest
+          sed -i "s|IMAGE_TAG|${{ github.sha }}|g" k8s/deployment.yaml
+          kubectl apply -f k8s/deployment.yaml
+
 
