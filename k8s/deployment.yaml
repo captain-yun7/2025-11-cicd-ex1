@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: captainyun/hello-server-for-cicd-test-202511:IMAGE_TAG
+        image: captainyun/hello-server-for-cicd-test-202511:a7f33611c4e518503d4b8d9f3a702853e5550a06
         ports:
         - containerPort: 3000
 ---
